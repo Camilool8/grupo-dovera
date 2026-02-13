@@ -72,8 +72,11 @@
         /* Estilo para el botón escurridizo */
         #btn-reject {
             transition: all 0.15s ease-out;
-            position: absolute;
             z-index: 100;
+        }
+
+        #btn-reject.is-flying {
+            position: fixed !important;
             width: auto !important;
             max-width: calc(100vw - 40px);
         }
@@ -334,7 +337,7 @@
     <!-- ============================================ -->
     <!-- LA PROPUESTA (CONTENIDO REAL) -->
     <!-- ============================================ -->
-    <div id="proposal-content" class="hidden fixed inset-0 z-50 bg-[#FAFAFA] overflow-y-auto">
+    <div id="proposal-content" class="hidden fixed inset-0 z-50 bg-[#FAFAFA] overflow-y-auto overflow-x-hidden">
         <!-- Decoración de fondo -->
         <div class="fixed top-0 left-0 w-full h-1.5 sm:h-2 bg-dovera-gold z-10"></div>
         <div
@@ -411,18 +414,17 @@
             </div>
 
             <!-- Botones de Acción -->
-            <div
-                class="mt-8 sm:mt-10 md:mt-12 relative min-h-[120px] sm:min-h-[80px] flex flex-col sm:flex-row justify-center sm:justify-start items-stretch sm:items-start gap-3 sm:gap-4 md:gap-6 pb-8 sm:pb-0">
+            <div class="mt-8 sm:mt-10 md:mt-12 flex flex-col sm:flex-row gap-3 sm:gap-5 pb-10 sm:pb-4">
 
                 <!-- Botón SI -->
                 <button onclick="acceptProposal()"
-                    class="bg-dovera-dark text-white px-6 sm:px-8 py-4 text-[10px] sm:text-xs uppercase font-bold tracking-widest hover:bg-dovera-gold transition-colors shadow-xl z-20 text-center">
+                    class="w-full sm:w-auto bg-dovera-dark text-white px-6 sm:px-8 py-4 text-[10px] sm:text-xs uppercase font-bold tracking-widest hover:bg-dovera-gold transition-colors shadow-xl text-center">
                     Si: Obvio, miamor!
                 </button>
 
-                <!-- Botón NO (Escurridizo) -->
+                <!-- Botón NO (Escurridizo) - empieza en flujo normal, luego vuela -->
                 <button id="btn-reject"
-                    class="bg-white text-gray-400 border border-gray-200 px-4 sm:px-6 py-3 sm:py-4 text-[10px] sm:text-xs uppercase font-bold tracking-widest hover:text-red-500 whitespace-nowrap z-30">
+                    class="w-full sm:w-auto bg-white text-gray-400 border border-gray-200 px-4 sm:px-6 py-3 sm:py-4 text-[10px] sm:text-xs uppercase font-bold tracking-widest hover:text-red-500 whitespace-nowrap">
                     No me gusta, dame otra opción
                 </button>
 
@@ -485,8 +487,10 @@
                     overlay.classList.add('hidden');
                     const proposal = document.getElementById('proposal-content');
                     proposal.classList.remove('hidden');
-                    // Restaurar scroll interno del modal si es necesario
                     proposal.scrollTop = 0;
+                    // Bloquear cualquier scroll del body/html
+                    document.body.style.overflow = 'hidden';
+                    document.documentElement.style.overflow = 'hidden';
                 }, 800);
 
             }, 3500);
@@ -505,33 +509,12 @@
         function moveButton() {
             rejectMoveCount++;
 
-            // Usar visualViewport para móvil (más preciso con teclado virtual, etc.)
-            const vw = (window.visualViewport ? window.visualViewport.width : window.innerWidth);
-            const vh = (window.visualViewport ? window.visualViewport.height : window.innerHeight);
+            // 1. Activar modo "volador"
+            btnReject.classList.add('is-flying');
 
-            // Forzar fixed y auto-width
-            btnReject.style.position = 'fixed';
-            btnReject.style.width = 'auto';
-
-            // Medir el botón después de asegurar que es auto
-            const btnW = btnReject.offsetWidth;
-            const btnH = btnReject.offsetHeight;
-
-            // Margen seguro para que nunca se salga
-            const margin = 16;
-            const maxX = Math.max(margin, vw - btnW - margin);
-            const maxY = Math.max(margin, vh - btnH - margin);
-
-            // Posición aleatoria dentro del viewport seguro
-            const newX = Math.random() * (maxX - margin) + margin;
-            const newY = Math.random() * (maxY - margin) + margin;
-
-            btnReject.style.left = `${newX}px`;
-            btnReject.style.top = `${newY}px`;
-
-            // Textos rotativos
+            // 2. Cambiar texto PRIMERO (antes de medir)
             const texts = [
-                "No me gusta, dame otra opción",
+                "No gracias",
                 "...",
                 "bruh",
                 "ok",
@@ -542,21 +525,40 @@
                 "rindete",
                 "ay mi madre",
                 "stop",
-                "repetir opciones..."
+                "nah"
             ];
-
-            // Elegir texto aleatorio diferente al actual
             let newText = btnReject.innerText;
             while (newText === btnReject.innerText) {
                 newText = texts[Math.floor(Math.random() * texts.length)];
             }
             btnReject.innerText = newText;
 
-            // Hacer el botón más pequeño en móvil después de varios intentos
+            // 3. Hacer más pequeño en móvil después de unos intentos
+            const vw = document.documentElement.clientWidth;
+            const vh = document.documentElement.clientHeight;
             if (rejectMoveCount > 3 && vw < 640) {
                 btnReject.style.fontSize = '9px';
                 btnReject.style.padding = '8px 12px';
             }
+
+            // 4. Medir DESPUÉS del cambio de texto
+            const btnW = btnReject.offsetWidth;
+            const btnH = btnReject.offsetHeight;
+
+            // 5. Calcular posición segura dentro del viewport
+            const pad = 12;
+            const safeMaxX = vw - btnW - pad;
+            const safeMaxY = vh - btnH - pad;
+
+            let newX = Math.random() * Math.max(0, safeMaxX - pad) + pad;
+            let newY = Math.random() * Math.max(0, safeMaxY - pad) + pad;
+
+            // Clamp final: nunca fuera de límites
+            newX = Math.min(Math.max(pad, newX), Math.max(pad, safeMaxX));
+            newY = Math.min(Math.max(pad, newY), Math.max(pad, safeMaxY));
+
+            btnReject.style.left = newX + 'px';
+            btnReject.style.top = newY + 'px';
         }
 
         // Eventos para PC y Móvil
