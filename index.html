@@ -114,7 +114,7 @@
     <nav class="fixed w-full z-40 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-all duration-300"
         id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+            <div class="flex justify-between items-center h-16 sm:h-20">
                 <!-- Logo Simulado -->
                 <div class="flex items-center gap-3">
                     <div
@@ -142,13 +142,14 @@
 
                 <!-- Botón Trampa -->
                 <button onclick="triggerTrap()"
-                    class="bg-dovera-dark text-white px-5 py-2 text-xs uppercase font-bold tracking-wider hover:bg-dovera-gold transition-colors rounded-sm flex items-center gap-2">
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    class="bg-dovera-dark text-white px-3 sm:px-5 py-2 text-[10px] sm:text-xs uppercase font-bold tracking-wider hover:bg-dovera-gold transition-colors rounded-sm flex items-center gap-1.5 sm:gap-2">
+                    <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
                         </path>
                     </svg>
-                    Área Clientes
+                    <span class="hidden sm:inline">Área Clientes</span>
+                    <span class="sm:hidden">Clientes</span>
                 </button>
             </div>
         </div>
@@ -169,12 +170,14 @@
             </div>
 
             <div class="relative z-10 text-center text-white px-6 max-w-4xl mx-auto fade-in-up">
-                <p class="text-[11px] md:text-sm uppercase tracking-[0.4em] mb-4 text-dovera-gold font-semibold hero-text-shadow-sm">
+                <p
+                    class="text-[11px] md:text-sm uppercase tracking-[0.4em] mb-4 text-dovera-gold font-semibold hero-text-shadow-sm">
                     Ingeniería & Arquitectura</p>
                 <h1 class="text-3xl sm:text-4xl md:text-6xl font-serif font-light mb-6 leading-tight hero-text-shadow">
                     Transformamos espacios, <br> <span class="italic">elevamos experiencias.</span>
                 </h1>
-                <p class="text-sm md:text-base font-normal text-gray-100 mb-10 max-w-2xl mx-auto leading-relaxed hero-text-shadow-sm">
+                <p
+                    class="text-sm md:text-base font-normal text-gray-100 mb-10 max-w-2xl mx-auto leading-relaxed hero-text-shadow-sm">
                     Acompañamos a nuestros clientes en toda fase del proyecto, brindando una asesoría personalizada con
                     vocación de servicio.
                 </p>
@@ -331,89 +334,95 @@
     <!-- ============================================ -->
     <!-- LA PROPUESTA (CONTENIDO REAL) -->
     <!-- ============================================ -->
-    <div id="proposal-content"
-        class="hidden fixed inset-0 z-50 bg-[#FAFAFA] flex items-center justify-center overflow-y-auto min-h-screen">
+    <div id="proposal-content" class="hidden fixed inset-0 z-50 bg-[#FAFAFA] overflow-y-auto">
         <!-- Decoración de fondo -->
-        <div class="fixed top-0 left-0 w-full h-2 bg-dovera-gold z-10"></div>
+        <div class="fixed top-0 left-0 w-full h-1.5 sm:h-2 bg-dovera-gold z-10"></div>
         <div
             class="fixed bottom-10 right-10 text-[200px] font-serif text-gray-100 pointer-events-none opacity-50 select-none hidden md:block">
             GD</div>
 
-        <div class="relative w-full max-w-3xl p-6 md:p-12 fade-in-up my-auto">
+        <div
+            class="relative w-full max-w-3xl mx-auto px-5 py-8 sm:p-8 md:p-12 proposal-inner fade-in-up min-h-screen flex flex-col justify-center">
 
             <!-- Header de la Carta -->
-            <div class="flex justify-between items-end border-b border-gray-200 pb-4 mb-6 md:pb-6 md:mb-8">
+            <div
+                class="flex justify-between items-end border-b border-gray-200 pb-3 mb-5 sm:pb-4 sm:mb-6 md:pb-6 md:mb-8">
                 <div>
                     <span
-                        class="block text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-1">Proyecto
+                        class="block text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em] text-gray-400 mb-1">Proyecto
                         Confidencial</span>
-                    <span class="font-serif text-xl md:text-2xl text-dovera-dark italic">Propuesta #1402</span>
+                    <span class="font-serif text-lg sm:text-xl md:text-2xl text-dovera-dark italic">Propuesta
+                        #1727</span>
                 </div>
-                <div class="text-right hidden md:block">
-                    <span class="block text-xs font-mono text-gray-400">FECHA: 14.FEB.2026</span>
-                    <span class="block text-xs font-mono text-gray-400">PRIORIDAD: MÁXIMA</span>
+                <div class="text-right">
+                    <span class="block text-[9px] sm:text-xs font-mono text-gray-400">14.FEB.2026</span>
+                    <span class="block text-[9px] sm:text-xs font-mono text-gray-400 hidden sm:block">PRIORIDAD:
+                        MÁXIMA</span>
                 </div>
             </div>
 
             <!-- Cuerpo de la Carta -->
-            <div class="space-y-4 md:space-y-6 text-dovera-gray">
-                <h1 class="text-4xl md:text-5xl font-serif text-dovera-dark leading-tight">
+            <div class="space-y-4 sm:space-y-5 md:space-y-6 text-dovera-gray">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif text-dovera-dark leading-tight">
                     Hola, miamor.
                 </h1>
 
-                <p class="text-sm md:text-lg leading-relaxed">
+                <p class="text-sm sm:text-base md:text-lg leading-relaxed">
                     Caíste en mi trampa. Esto no es nada del grupo Dôvera, es <strong>mi sorpresa para ti :D</strong>
                 </p>
 
-                <p class="text-sm md:text-lg leading-relaxed">
+                <p class="text-sm sm:text-base md:text-lg leading-relaxed">
                     Te mereces todas las sorpresas del mundo y más. Y aunque ya tenemos nuestra cita de maridaje
                     agendada, sentía que a este "proyecto" le faltaba la pieza más importante para ser oficial...
                 </p>
 
                 <!-- Detalles de la Cita (Estilo Ficha Técnica) -->
-                <div class="bg-white p-6 md:p-8 border-l-4 border-dovera-gold shadow-lg my-6">
-                    <h3 class="text-xs font-bold uppercase tracking-widest text-dovera-dark mb-4 border-b pb-2">Detalles
-                        del Evento (Ya confirmado)</h3>
+                <div class="bg-white p-4 sm:p-6 md:p-8 border-l-4 border-dovera-gold shadow-lg my-4 sm:my-6">
+                    <h3
+                        class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-dovera-dark mb-3 sm:mb-4 border-b pb-2">
+                        Detalles del Evento (Ya confirmado)</h3>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                         <div>
-                            <p class="text-[10px] uppercase text-gray-400 font-bold">Actividad</p>
-                            <p class="text-base md:text-lg font-serif text-dovera-dark">Maridaje Privado & Cata</p>
+                            <p class="text-[9px] sm:text-[10px] uppercase text-gray-400 font-bold">Actividad</p>
+                            <p class="text-sm sm:text-base md:text-lg font-serif text-dovera-dark">Maridaje Privado &
+                                Cata</p>
                         </div>
                         <div>
-                            <p class="text-[10px] uppercase text-gray-400 font-bold">Lugar / Partner</p>
-                            <p class="text-base md:text-lg font-serif text-dovera-dark">SulaSommelier</p>
+                            <p class="text-[9px] sm:text-[10px] uppercase text-gray-400 font-bold">Lugar / Partner</p>
+                            <p class="text-sm sm:text-base md:text-lg font-serif text-dovera-dark">SulaSommelier</p>
                         </div>
-                        <div class="md:col-span-2">
-                            <p class="text-[10px] uppercase text-gray-400 font-bold">Fecha & Hora</p>
-                            <p class="text-base md:text-lg font-serif text-dovera-dark">Sábado 14 de Febrero, 2026 |
+                        <div class="sm:col-span-2">
+                            <p class="text-[9px] sm:text-[10px] uppercase text-gray-400 font-bold">Fecha & Hora</p>
+                            <p class="text-sm sm:text-base md:text-lg font-serif text-dovera-dark">Sábado 14 de Febrero,
+                                2026 |
                                 7:30 PM</p>
                         </div>
                     </div>
                 </div>
 
-                <p class="text-sm md:text-lg leading-relaxed font-light italic">
+                <p class="text-sm sm:text-base md:text-lg leading-relaxed font-light italic">
                     El lugar está listo y el vino esperando. Pero la verdadera pregunta de este proyecto es:
                 </p>
 
-                <p class="text-3xl md:text-4xl font-serif font-medium text-dovera-dark pt-2 leading-tight">
+                <p class="text-2xl sm:text-3xl md:text-4xl font-serif font-medium text-dovera-dark pt-2 leading-tight">
                     Miamor, ¿aceptas ser mi San Valentín?
                 </p>
             </div>
 
             <!-- Botones de Acción -->
             <div
-                class="mt-8 md:mt-12 relative h-40 md:h-32 flex flex-col md:flex-row justify-center md:justify-start items-center md:items-start gap-4 md:gap-6">
+                class="mt-8 sm:mt-10 md:mt-12 relative min-h-[120px] sm:min-h-[80px] flex flex-col sm:flex-row justify-center sm:justify-start items-stretch sm:items-start gap-3 sm:gap-4 md:gap-6 pb-8 sm:pb-0">
 
                 <!-- Botón SI -->
                 <button onclick="acceptProposal()"
-                    class="w-full md:w-auto bg-dovera-dark text-white px-8 py-4 text-xs uppercase font-bold tracking-widest hover:bg-dovera-gold transition-colors shadow-xl z-20 order-1">
+                    class="bg-dovera-dark text-white px-6 sm:px-8 py-4 text-[10px] sm:text-xs uppercase font-bold tracking-widest hover:bg-dovera-gold transition-colors shadow-xl z-20 text-center">
                     Si: Obvio, miamor!
                 </button>
 
                 <!-- Botón NO (Escurridizo) -->
                 <button id="btn-reject"
-                    class="w-full md:w-auto bg-white text-gray-400 border border-gray-200 px-6 py-4 text-xs uppercase font-bold tracking-widest hover:text-red-500 whitespace-nowrap z-30 order-2 md:absolute md:left-64">
+                    class="bg-white text-gray-400 border border-gray-200 px-4 sm:px-6 py-3 sm:py-4 text-[10px] sm:text-xs uppercase font-bold tracking-widest hover:text-red-500 whitespace-nowrap z-30">
                     No me gusta, dame otra opción
                 </button>
 
@@ -425,17 +434,19 @@
     <!-- PANTALLA ÉXITO -->
     <!-- ============================================ -->
     <div id="success-screen"
-        class="hidden fixed inset-0 z-[60] bg-white flex flex-col items-center justify-center text-center p-8">
+        class="hidden fixed inset-0 z-[60] bg-white flex flex-col items-center justify-center text-center px-6 py-10 sm:p-8">
         <div
-            class="w-20 h-20 border-2 border-dovera-gold rounded-full flex items-center justify-center mb-6 animate-bounce">
-            <span class="text-3xl text-dovera-gold">♥</span>
+            class="w-16 h-16 sm:w-20 sm:h-20 border-2 border-dovera-gold rounded-full flex items-center justify-center mb-5 sm:mb-6 animate-bounce">
+            <span class="text-2xl sm:text-3xl text-dovera-gold">♥</span>
         </div>
-        <h2 class="text-3xl md:text-5xl font-serif text-dovera-dark mb-4">¡Oficialmente mi San Valentín!</h2>
-        <p class="text-gray-500 max-w-md mx-auto mb-8 font-light text-sm md:text-base">
+        <h2 class="text-2xl sm:text-3xl md:text-5xl font-serif text-dovera-dark mb-3 sm:mb-4 leading-tight">
+            ¡Oficialmente mi San Valentín!</h2>
+        <p class="text-gray-500 max-w-md mx-auto mb-6 sm:mb-8 font-light text-sm md:text-base leading-relaxed">
             Gracias por aceptar, miamor. Prepárate para una noche increíble.<br>
             Te amo.
         </p>
-        <p class="text-[10px] uppercase tracking-widest text-gray-400">Proyecto #1402 Ejecutado con Éxito</p>
+        <p class="text-[9px] sm:text-[10px] uppercase tracking-widest text-gray-400">Proyecto #1727 Ejecutado con Éxito
+        </p>
     </div>
 
     <!-- Audio oculto -->
@@ -458,7 +469,7 @@
             // Reproducir la canción al mostrar el overlay
             const music = document.getElementById('bg-music');
             music.volume = 0.5;
-            music.play().catch(() => {});
+            music.play().catch(() => { });
 
             // 3. Simulación de carga
             setTimeout(() => { bar.style.width = '30%'; addLog("Conectando con servidor seguro..."); }, 500);
@@ -489,30 +500,36 @@
 
         // --- LÓGICA DEL BOTÓN ESCURRIDIZO ---
         const btnReject = document.getElementById('btn-reject');
+        let rejectMoveCount = 0;
 
         function moveButton() {
-            // Obtenemos dimensiones de la ventana visible
-            const viewportWidth = window.innerWidth;
-            const viewportHeight = window.innerHeight;
+            rejectMoveCount++;
 
-            // Dimensiones del botón
-            const btnRect = btnReject.getBoundingClientRect();
+            // Usar visualViewport para móvil (más preciso con teclado virtual, etc.)
+            const vw = (window.visualViewport ? window.visualViewport.width : window.innerWidth);
+            const vh = (window.visualViewport ? window.visualViewport.height : window.innerHeight);
 
-            // Área segura (margen)
-            const padding = 20;
-            const maxX = viewportWidth - btnRect.width - padding;
-            const maxY = viewportHeight - btnRect.height - padding;
-
-            // Nueva posición aleatoria
-            const newX = Math.random() * (maxX - padding) + padding;
-            const newY = Math.random() * (maxY - padding) + padding;
-
-            // Aplicamos fixed para que vuele por toda la pantalla
+            // Forzar fixed y auto-width
             btnReject.style.position = 'fixed';
+            btnReject.style.width = 'auto';
+
+            // Medir el botón después de asegurar que es auto
+            const btnW = btnReject.offsetWidth;
+            const btnH = btnReject.offsetHeight;
+
+            // Margen seguro para que nunca se salga
+            const margin = 16;
+            const maxX = Math.max(margin, vw - btnW - margin);
+            const maxY = Math.max(margin, vh - btnH - margin);
+
+            // Posición aleatoria dentro del viewport seguro
+            const newX = Math.random() * (maxX - margin) + margin;
+            const newY = Math.random() * (maxY - margin) + margin;
+
             btnReject.style.left = `${newX}px`;
             btnReject.style.top = `${newY}px`;
 
-            // Lista de opciones cíclica o aleatoria
+            // Textos rotativos
             const texts = [
                 "No me gusta, dame otra opción",
                 "...",
@@ -534,14 +551,20 @@
                 newText = texts[Math.floor(Math.random() * texts.length)];
             }
             btnReject.innerText = newText;
+
+            // Hacer el botón más pequeño en móvil después de varios intentos
+            if (rejectMoveCount > 3 && vw < 640) {
+                btnReject.style.fontSize = '9px';
+                btnReject.style.padding = '8px 12px';
+            }
         }
 
         // Eventos para PC y Móvil
         btnReject.addEventListener('mouseover', moveButton);
         btnReject.addEventListener('touchstart', (e) => {
-            e.preventDefault(); // Evita el tap y el click
+            e.preventDefault();
             moveButton();
-        });
+        }, { passive: false });
         btnReject.addEventListener('click', (e) => {
             e.preventDefault();
             moveButton();
